@@ -85,6 +85,15 @@
         object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
         border-radius: 0.5rem; /* Bordas arredondadas para as imagens */
     }
+
+    /* Estilos para o menu mobile */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-out;
+    }
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
   </style>
 </head>
 <!-- Corpo da página com gradiente de fundo e fonte padrão -->
@@ -93,63 +102,88 @@
   <header class="bg-white bg-opacity-90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <!-- Título do portfólio com gradiente de texto -->
-      <h1 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">ZURC</h1>
-      <!-- Navegação principal -->
-      <nav>
-        <ul class="flex space-x-6 font-semibold text-gray-700">
+      <h1 class="text-2xl sm:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">ZURC</h1>
+      <!-- Navegação principal (escondida em telas pequenas, visível em md e maiores) -->
+      <nav class="hidden md:flex">
+        <ul class="flex space-x-4 sm:space-x-6 font-semibold text-gray-700">
           <li><a href="#servicos" class="hover:text-primary transition duration-300 ease-in-out transform hover:scale-105">Serviços</a></li>
           <li><a href="#portfolio" class="hover:text-primary transition duration-300 ease-in-out transform hover:scale-105">Projetos</a></li>
           <li><a href="#sobre" class="hover:text-primary transition duration-300 ease-in-out transform hover:scale-105">Sobre</a></li>
           <li><a href="#contato" class="hover:text-primary transition duration-300 ease-in-out transform hover:scale-105">Contato</a></li>
         </ul>
       </nav>
+
+      <!-- Botão do menu mobile (visível apenas em telas pequenas) -->
+      <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menu mobile (escondido por padrão, ativado via JS) -->
+    <div id="mobile-menu" class="mobile-menu absolute top-0 right-0 w-64 h-screen bg-white shadow-lg p-6 md:hidden z-40">
+      <div class="flex justify-end mb-4">
+        <button id="close-mobile-menu-button" class="p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <ul class="flex flex-col space-y-4 font-semibold text-gray-700">
+        <li><a href="#servicos" class="block py-2 hover:text-primary transition" onclick="closeMobileMenu()">Serviços</a></li>
+        <li><a href="#portfolio" class="block py-2 hover:text-primary transition" onclick="closeMobileMenu()">Projetos</a></li>
+        <li><a href="#sobre" class="block py-2 hover:text-primary transition" onclick="closeMobileMenu()">Sobre</a></li>
+        <li><a href="#contato" class="block py-2 hover:text-primary transition" onclick="closeMobileMenu()">Contato</a></li>
+      </ul>
     </div>
   </header>
 
   <!-- Seção Hero (destaque principal da página) -->
-  <section class="text-center py-24 bg-gradient-to-br from-primary to-secondary text-white shadow-xl">
-    <h2 class="text-6xl font-extrabold mb-4 animate-fade-in drop-shadow-lg">Transforme ideias em soluções digitais</h2>
-    <p class="text-2xl mb-8 animate-fade-in delay-150 max-w-3xl mx-auto">Criação de sites e sistemas sob medida para pequenos negócios</p>
-    <a href="#contato" class="inline-block px-10 py-4 rounded-full font-bold text-lg shadow-lg btn-gradient text-white animate-fade-in delay-300">
+  <section class="text-center py-16 sm:py-24 bg-gradient-to-br from-primary to-secondary text-white shadow-xl">
+    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 animate-fade-in drop-shadow-lg px-4">Transforme ideias em soluções digitais</h2>
+    <p class="text-lg sm:text-xl lg:text-2xl mb-8 animate-fade-in delay-150 max-w-3xl mx-auto px-4">Criação de sites e sistemas sob medida para pequenos negócios</p>
+    <a href="#contato" class="inline-block px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-lg btn-gradient text-white animate-fade-in delay-300">
       Solicitar Orçamento
     </a>
   </section>
 
   <!-- Seção de Serviços -->
-  <section id="servicos" class="py-20 px-4 max-w-7xl mx-auto">
+  <section id="servicos" class="py-16 sm:py-20 px-4 max-w-7xl mx-auto">
     <!-- Título da seção com um sublinhado estilizado -->
-    <h2 class="text-5xl font-bold mb-16 text-center text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Serviços</h2>
-    <div class="grid md:grid-cols-3 gap-10">
+    <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Serviços</h2>
+    <div class="grid md:grid-cols-3 gap-8 sm:gap-10">
       <!-- Cartão de serviço 1 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right">
-        <h3 class="text-3xl font-bold mb-4 text-primary">Sites Institucionais</h3>
-        <p class="text-gray-700 leading-relaxed">Desenvolvimento de sites profissionais que comunicam confiança e credibilidade para a sua marca.</p>
+      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-primary">Sites Institucionais</h3>
+        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">Desenvolvimento de sites profissionais que comunicam confiança e credibilidade para a sua marca.</p>
       </div>
       <!-- Cartão de serviço 2 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right delay-150">
-        <h3 class="text-3xl font-bold mb-4 text-primary">Lojas Virtuais</h3>
-        <p class="text-gray-700 leading-relaxed">E-commerces modernos com painel de controle completo, carrinho de compras e integração de pagamentos seguros.</p>
+      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right delay-150">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-primary">Lojas Virtuais</h3>
+        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">E-commerces modernos com painel de controle completo, carrinho de compras e integração de pagamentos seguros.</p>
       </div>
       <!-- Cartão de serviço 3 -->
-      <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right delay-300">
-        <h3 class="text-3xl font-bold mb-4 text-primary">Sistemas Personalizados</h3>
-        <p class="text-gray-700 leading-relaxed">Ferramentas exclusivas, como catálogos digitais, CRMs, dashboards interativos e automações sob medida para o seu negócio.</p>
+      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right delay-300">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-primary">Sistemas Personalizados</h3>
+        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">Ferramentas exclusivas, como catálogos digitais, CRMs, dashboards interativos e automações sob medida para o seu negócio.</p>
       </div>
     </div>
   </section>
 
   <!-- Seção de Portfólio -->
-  <section id="portfolio" class="py-20 px-4 bg-gradient-to-br from-indigo-50 to-white">
+  <section id="portfolio" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-indigo-50 to-white">
     <div class="max-w-7xl mx-auto">
       <!-- Título da seção com um sublinhado estilizado -->
-      <h2 class="text-5xl font-bold mb-16 text-center text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Projetos Recentes</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Projetos Recentes</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
         <!-- Projeto 1 -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
           <div class="relative">
             <!-- Contêiner do carrossel de imagens para o Projeto 1 -->
             <div class="carousel-container" data-carousel-id="project1">
               <div class="carousel-item"><img src="https://placehold.co/600x400/FF5733/FFFFFF?text=Catalogo+Online" alt="Catálogo Online Imagem 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy"></div>
+              
             </div>
             <!-- Botões de navegação do carrossel -->
             <button class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-prev" aria-label="Anterior">
@@ -164,8 +198,8 @@
             </button>
           </div>
           <div class="p-6">
-            <h3 class="text-2xl font-bold text-primary mb-2">Catálogo Online Interativo</h3>
-            <p class="text-gray-700 text-base leading-relaxed">Sistema personalizado para apresentação de produtos com painel administrativo intuitivo e recursos de busca avançada.</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Catálogo Online Interativo</h3>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Sistema personalizado para apresentação de produtos com painel administrativo intuitivo e recursos de busca avançada.</p>
             <div class="mt-4 flex flex-wrap gap-2">
                 <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Web Development</span>
                 <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Backend</span>
@@ -179,6 +213,7 @@
             <!-- Contêiner do carrossel de imagens para o Projeto 2 -->
             <div class="carousel-container" data-carousel-id="project2">
               <div class="carousel-item"><img src="https://placehold.co/600x400/33AACC/FFFFFF?text=EAD+Plataforma" alt="Plataforma EAD Imagem 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/33AACC/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy"></div>
+              
             </div>
             <!-- Botões de navegação do carrossel -->
             <button class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-prev" aria-label="Anterior">
@@ -193,8 +228,8 @@
             </button>
           </div>
           <div class="p-6">
-            <h3 class="text-2xl font-bold text-primary mb-2">Plataforma EAD Personalizada</h3>
-            <p class="text-gray-700 text-base leading-relaxed">Plataforma completa para venda de cursos online com área do aluno, controle de progresso e emissão de certificados.</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Plataforma EAD Personalizada</h3>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Plataforma completa para venda de cursos online com área do aluno, controle de progresso e emissão de certificados.</p>
             <div class="mt-4 flex flex-wrap gap-2">
                 <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">E-commerce</span>
                 <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Education Tech</span>
@@ -208,6 +243,7 @@
             <!-- Contêiner do carrossel de imagens para o Projeto 3 -->
             <div class="carousel-container" data-carousel-id="project3">
               <div class="carousel-item"><img src="https://placehold.co/600x400/AAFF33/FFFFFF?text=Gestao+Financeira" alt="Gestão Financeira Imagem 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/AAFF33/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy"></div>
+            
             </div>
             <!-- Botões de navegação do carrossel -->
             <button class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-prev" aria-label="Anterior">
@@ -222,8 +258,8 @@
             </button>
           </div>
           <div class="p-6">
-            <h3 class="text-2xl font-bold text-primary mb-2">Sistema de Gestão Financeira</h3>
-            <p class="text-gray-700 text-base leading-relaxed">Ferramenta para controle de receitas e despesas, com relatórios gerenciais e acompanhamento de fluxo de caixa.</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Sistema de Gestão Financeira</h3>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Ferramenta para controle de receitas e despesas, com relatórios gerenciais e acompanhamento de fluxo de caixa.</p>
             <div class="mt-4 flex flex-wrap gap-2">
                 <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Financial Tech</span>
                 <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">SaaS</span>
@@ -237,6 +273,7 @@
             <!-- Contêiner do carrossel de imagens para o Projeto 4 -->
             <div class="carousel-container" data-carousel-id="project4">
               <div class="carousel-item"><img src="https://placehold.co/600x400/FF5733/FFFFFF?text=Website+Corporativo" alt="Website Corporativo Imagem 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy"></div>
+            
             </div>
             <!-- Botões de navegação do carrossel -->
             <button class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-prev" aria-label="Anterior">
@@ -251,8 +288,8 @@
             </button>
           </div>
           <div class="p-6">
-            <h3 class="text-2xl font-bold text-primary mb-2">Website Corporativo Otimizado</h3>
-            <p class="text-gray-700 text-base leading-relaxed">Website institucional moderno com foco em SEO, experiência do usuário e design responsivo para diversas plataformas.</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Website Corporativo Otimizado</h3>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Website institucional moderno com foco em SEO, experiência do usuário e design responsivo para diversas plataformas.</p>
             <div class="mt-4 flex flex-wrap gap-2">
                 <span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Marketing Digital</span>
                 <span class="bg-orange-100 text-orange-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">UI/UX Design</span>
@@ -261,65 +298,81 @@
         </div>
       </div>
       <!-- Observação sobre o carrossel 
-      <p class="text-center text-gray-600 mt-12 text-lg">
+      <p class="text-center text-gray-600 mt-10 sm:mt-12 text-base sm:text-lg">
         <strong class="text-red-500">Observação:</strong> As imagens acima são placeholders; você pode substituí-las pelas suas imagens de projetos reais.
       </p>-->
     </div>
   </section>
 
   <!-- Seção Sobre Mim -->
-  <section id="sobre" class="py-20 px-4 max-w-4xl mx-auto text-center">
+  <section id="sobre" class="py-16 sm:py-20 px-4 max-w-4xl mx-auto text-center">
     <!-- Título da seção com um sublinhado estilizado -->
-    <h2 class="text-5xl font-bold mb-10 text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Sobre Mim</h2>
-    <p class="text-lg text-gray-800 leading-loose">
-      Olá! Sou Cícero Régis, um desenvolvedor apaixonado por transformar ideias em soluções digitais eficientes e visualmente atraentes. Meu foco é capacitar micro e pequenas empresas, oferecendo a elas uma presença digital profissional e impactante. Prezo por um atendimento direto, agilidade na entrega e a personalização de cada projeto para que ele realmente se encaixe nas suas necessidades e objetivos.
+    <h2 class="text-4xl sm:text-5xl font-bold mb-8 sm:mb-10 text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Sobre Mim</h2>
+    <p class="text-base sm:text-lg text-gray-800 leading-loose">
+      Olá! Sou um desenvolvedor apaixonado por transformar ideias em soluções digitais eficientes e visualmente atraentes. Meu foco é capacitar micro e pequenas empresas, oferecendo a elas uma presença digital profissional e impactante. Prezo por um atendimento direto, agilidade na entrega e a personalização de cada projeto para que ele realmente se encaixe nas suas necessidades e objetivos.
     </p>
   </section>
 
   <!-- Seção de Contato -->
-  <section id="contato" class="py-20 px-4 bg-gradient-to-br from-white to-gray-50">
-    <div class="max-w-3xl mx-auto text-center p-10 rounded-2xl shadow-2xl border border-gray-100">
-      <h2 class="text-5xl font-bold mb-8 text-gray-800">Vamos conversar?</h2>
-      <p class="mb-10 text-gray-700 text-xl leading-relaxed">Entre em contato para solicitar um orçamento ou tirar dúvidas sobre seu projeto. Estou pronto para ajudar sua ideia a ganhar vida!</p>
+  <section id="contato" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-white to-gray-50">
+    <div class="max-w-3xl mx-auto text-center p-8 sm:p-10 rounded-2xl shadow-2xl border border-gray-100">
+      <h2 class="text-4xl sm:text-5xl font-bold mb-6 sm:mb-8 text-gray-800">Vamos conversar?</h2>
+      <p class="mb-8 sm:mb-10 text-gray-700 text-base sm:text-xl leading-relaxed">Entre em contato para solicitar um orçamento ou tirar dúvidas sobre seu projeto. Estou pronto para ajudar sua ideia a ganhar vida!</p>
       <!-- Botão para o WhatsApp -->
-      <a href="https://wa.me/5561998354187" class="inline-block px-12 py-4 rounded-full font-bold text-xl shadow-lg bg-green-500 text-white hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105">
+      <a href="https://wa.me/5561998354187" class="inline-block px-10 sm:px-12 py-3 sm:py-4 rounded-full font-bold text-lg sm:text-xl shadow-lg bg-green-500 text-white hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105">
         Fale comigo no WhatsApp
       </a>
     </div>
   </section>
 
   <!-- Rodapé -->
-  <footer class="text-center py-8 text-sm text-gray-500 bg-gradient-to-r from-gray-100 to-gray-200">
+  <footer class="text-center py-6 sm:py-8 text-xs sm:text-sm text-gray-500 bg-gradient-to-r from-gray-100 to-gray-200">
     <p>&copy; 2025 zurc. Todos os direitos reservados.</p>
   </footer>
 
   <script>
-    // Seleciona todos os contêineres de carrossel na página
+    // Script para a funcionalidade do carrossel
     document.querySelectorAll('.carousel-container').forEach(carousel => {
-      // Encontra os botões de navegação para este carrossel
       const prevButton = carousel.parentNode.querySelector('.carousel-prev');
       const nextButton = carousel.parentNode.querySelector('.carousel-next');
 
-      // Adiciona um ouvinte de evento de clique ao botão 'Próximo'
+      const scrollCarousel = (direction) => {
+        const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
+        carousel.scrollLeft += direction * itemWidth;
+      };
+
       if (nextButton) {
-        nextButton.addEventListener('click', () => {
-          // Calcula a largura de um item do carrossel para rolar
-          const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
-          // Rola o carrossel para a próxima imagem
-          carousel.scrollLeft += itemWidth;
-        });
+        nextButton.addEventListener('click', () => scrollCarousel(1));
       }
 
-      // Adiciona um ouvinte de evento de clique ao botão 'Anterior'
       if (prevButton) {
-        prevButton.addEventListener('click', () => {
-          // Calcula a largura de um item do carrossel para rolar
-          const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
-          // Rola o carrossel para a imagem anterior
-          carousel.scrollLeft -= itemWidth;
-        });
+        prevButton.addEventListener('click', () => scrollCarousel(-1));
       }
     });
+
+    // Script para o menu mobile
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMobileMenuButton = document.getElementById('close-mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Abre o menu mobile
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+      });
+    }
+
+    // Fecha o menu mobile
+    if (closeMobileMenuButton) {
+      closeMobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    }
+
+    // Fecha o menu mobile ao clicar em um link
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+    }
   </script>
 </body>
 </html>
