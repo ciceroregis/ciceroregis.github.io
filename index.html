@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio | Cícero Régis</title>
+  <title>Portfólio | Zurc</title>
   <!-- Link para o CDN do Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -16,10 +16,11 @@
             sans: ['Inter', 'sans-serif']
           },
           colors: {
-            // Definição de cores personalizadas
-            primary: '#2563eb', // Um tom de azul vibrante
-            secondary: '#1e40af', // Um tom de azul mais escuro para o gradiente
-            accent: '#8b5cf6', // Um tom de roxo para detalhes
+            // Definição de cores personalizadas mais vivas e vibrantes
+            // Nova paleta: Verde-água, Amarelo e Roxo Intenso
+            primary: '#00bcd4', // Teal vibrante (Cyan 500)
+            secondary: '#ffeb3b', // Amarelo vibrante (Yellow 500)
+            accent: '#673ab7', // Roxo intenso (Deep Purple 500)
           },
           animation: {
             // Definição de animações personalizadas
@@ -44,48 +45,6 @@
   <!-- Link para a fonte Inter do Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Estilos personalizados para o botão com gradiente */
-    .btn-gradient {
-      background-image: linear-gradient(to right, theme('colors.primary'), theme('colors.secondary'));
-      transition: all 0.3s ease-in-out;
-    }
-    /* Efeito de hover para o botão com gradiente */
-    .btn-gradient:hover {
-      background-image: linear-gradient(to left, theme('colors.primary'), theme('colors.secondary'));
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    /* Estilos para o contêiner do carrossel */
-    .carousel-container {
-        display: flex;
-        /* Permite a rolagem suave com JavaScript */
-        scroll-behavior: smooth;
-        /* Esconde o overflow para criar o efeito de carrossel */
-        overflow: hidden;
-        /* Garante que cada item se encaixe na visualização */
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch; /* Suporte para rolagem suave em iOS */
-    }
-    /* Esconde a barra de rolagem padrão */
-    .carousel-container::-webkit-scrollbar {
-        display: none;
-    }
-    /* Estilos para cada item do carrossel */
-    .carousel-item {
-        /* Não cresce nem encolhe, mantém o tamanho original */
-        flex: 0 0 auto;
-        /* Faz com que cada item ocupe 100% da largura do contêiner para simular um slide */
-        width: 100%;
-        scroll-snap-align: start; /* Alinha o item ao início da área de visualização */
-    }
-    /* Estilos para as imagens dentro do carrossel */
-    .carousel-item img {
-        width: 100%;
-        height: 200px; /* Altura fixa para as imagens do carrossel */
-        object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
-        border-radius: 0.5rem; /* Bordas arredondadas para as imagens */
-    }
-
     /* Estilos para o menu mobile */
     .mobile-menu {
       transform: translateX(100%);
@@ -97,7 +56,7 @@
   </style>
 </head>
 <!-- Corpo da página com gradiente de fundo e fonte padrão -->
-<body class="bg-gradient-to-br from-gray-50 to-indigo-50 text-gray-900 font-sans min-h-screen">
+<body class="bg-gradient-to-br from-emerald-50 to-amber-50 text-gray-900 font-sans min-h-screen">
   <!-- Navbar (cabeçalho fixo no topo) -->
   <header class="bg-white bg-opacity-90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -143,7 +102,7 @@
   <section class="text-center py-16 sm:py-24 bg-gradient-to-br from-primary to-secondary text-white shadow-xl">
     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 animate-fade-in drop-shadow-lg px-4">Transforme ideias em soluções digitais</h2>
     <p class="text-lg sm:text-xl lg:text-2xl mb-8 animate-fade-in delay-150 max-w-3xl mx-auto px-4">Criação de sites e sistemas sob medida para pequenos negócios</p>
-    <a href="#contato" class="inline-block px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-lg btn-gradient text-white animate-fade-in delay-300">
+    <a href="#contato" class="inline-block px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-lg bg-gradient-to-br from-accent to-primary text-white animate-fade-in delay-300 hover:from-primary hover:to-accent transition duration-300 ease-in-out transform hover:scale-105">
       Solicitar Orçamento
     </a>
   </section>
@@ -172,7 +131,7 @@
   </section>
 
   <!-- Seção de Portfólio -->
-  <section id="portfolio" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-indigo-50 to-white">
+  <section id="portfolio" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-yellow-50 to-teal-50">
     <div class="max-w-7xl mx-auto">
       <!-- Título da seção com um sublinhado estilizado -->
       <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Projetos Recentes</h2>
@@ -180,22 +139,8 @@
         <!-- Projeto 1 -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
           <div class="relative">
-            <!-- Contêiner do carrossel de imagens para o Projeto 1 -->
-            <div class="carousel-container" data-carousel-id="project1">
-              <div class="carousel-item"><img src="https://placehold.co/600x400/FF5733/FFFFFF?text=Catalogo+Online" alt="Catálogo Online Imagem 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy"></div>
-              
-            </div>
-            <!-- Botões de navegação do carrossel -->
-            <button class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-prev" aria-label="Anterior">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-            <button class="absolute top-1/2 right-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-next" aria-label="Próximo">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+            <!-- Imagem única para o Projeto 1 com efeito interativo -->
+            <img src="https://placehold.co/600x400/FF5733/FFFFFF?text=Catalogo+Online" alt="Catálogo Online Imagem" class="w-full h-48 sm:h-56 object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy">
           </div>
           <div class="p-6">
             <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Catálogo Online Interativo</h3>
@@ -210,22 +155,8 @@
         <!-- Projeto 2 -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
           <div class="relative">
-            <!-- Contêiner do carrossel de imagens para o Projeto 2 -->
-            <div class="carousel-container" data-carousel-id="project2">
-              <div class="carousel-item"><img src="https://placehold.co/600x400/33AACC/FFFFFF?text=EAD+Plataforma" alt="Plataforma EAD Imagem 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/33AACC/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy"></div>
-              
-            </div>
-            <!-- Botões de navegação do carrossel -->
-            <button class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-prev" aria-label="Anterior">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-            <button class="absolute top-1/2 right-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-next" aria-label="Próximo">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+            <!-- Imagem única para o Projeto 2 com efeito interativo -->
+            <img src="https://placehold.co/600x400/33AACC/FFFFFF?text=EAD+Plataforma" alt="Plataforma EAD Imagem" class="w-full h-48 sm:h-56 object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/33AACC/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy">
           </div>
           <div class="p-6">
             <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Plataforma EAD Personalizada</h3>
@@ -240,22 +171,8 @@
         <!-- Projeto 3 -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
           <div class="relative">
-            <!-- Contêiner do carrossel de imagens para o Projeto 3 -->
-            <div class="carousel-container" data-carousel-id="project3">
-              <div class="carousel-item"><img src="https://placehold.co/600x400/AAFF33/FFFFFF?text=Gestao+Financeira" alt="Gestão Financeira Imagem 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/AAFF33/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy"></div>
-            
-            </div>
-            <!-- Botões de navegação do carrossel -->
-            <button class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-prev" aria-label="Anterior">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-            <button class="absolute top-1/2 right-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-next" aria-label="Próximo">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+            <!-- Imagem única para o Projeto 3 com efeito interativo -->
+            <img src="https://placehold.co/600x400/AAFF33/FFFFFF?text=Gestao+Financeira" alt="Gestão Financeira Imagem" class="w-full h-48 sm:h-56 object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/AAFF33/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy">
           </div>
           <div class="p-6">
             <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Sistema de Gestão Financeira</h3>
@@ -270,22 +187,8 @@
         <!-- Projeto 4 -->
         <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
           <div class="relative">
-            <!-- Contêiner do carrossel de imagens para o Projeto 4 -->
-            <div class="carousel-container" data-carousel-id="project4">
-              <div class="carousel-item"><img src="https://placehold.co/600x400/FF5733/FFFFFF?text=Website+Corporativo" alt="Website Corporativo Imagem 1" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy"></div>
-            
-            </div>
-            <!-- Botões de navegação do carrossel -->
-            <button class="absolute top-1/2 left-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-prev" aria-label="Anterior">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-            <button class="absolute top-1/2 right-2 -translate-y-1/2 bg-white/70 rounded-full p-2 shadow-md z-10 carousel-next" aria-label="Próximo">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+            <!-- Imagem única para o Projeto 4 com efeito interativo -->
+            <img src="https://placehold.co/600x400/FF5733/FFFFFF?text=Website+Corporativo" alt="Website Corporativo Imagem" class="w-full h-48 sm:h-56 object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy">
           </div>
           <div class="p-6">
             <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Website Corporativo Otimizado</h3>
@@ -297,19 +200,15 @@
           </div>
         </div>
       </div>
-      <!-- Observação sobre o carrossel 
-      <p class="text-center text-gray-600 mt-10 sm:mt-12 text-base sm:text-lg">
-        <strong class="text-red-500">Observação:</strong> As imagens acima são placeholders; você pode substituí-las pelas suas imagens de projetos reais.
-      </p>-->
     </div>
   </section>
 
-  <!-- Seção Sobre Mim -->
+  <!-- Seção Sobre Nós -->
   <section id="sobre" class="py-16 sm:py-20 px-4 max-w-4xl mx-auto text-center">
     <!-- Título da seção com um sublinhado estilizado -->
-    <h2 class="text-4xl sm:text-5xl font-bold mb-8 sm:mb-10 text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Sobre Mim</h2>
+    <h2 class="text-4xl sm:text-5xl font-bold mb-8 sm:mb-10 text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Sobre Nós</h2>
     <p class="text-base sm:text-lg text-gray-800 leading-loose">
-      Olá! Sou um desenvolvedor apaixonado por transformar ideias em soluções digitais eficientes e visualmente atraentes. Meu foco é capacitar micro e pequenas empresas, oferecendo a elas uma presença digital profissional e impactante. Prezo por um atendimento direto, agilidade na entrega e a personalização de cada projeto para que ele realmente se encaixe nas suas necessidades e objetivos.
+      Olá! Somos a Zurc, apaixonados por transformar ideias em soluções digitais eficientes e visualmente atraentes. Nosso foco é capacitar micro e pequenas empresas, oferecendo a elas uma presença digital profissional e impactante. Prezamos por um atendimento direto, agilidade na entrega e a personalização de cada projeto para que ele realmente se encaixe nas suas necessidades e objetivos.
     </p>
   </section>
 
@@ -317,39 +216,20 @@
   <section id="contato" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-white to-gray-50">
     <div class="max-w-3xl mx-auto text-center p-8 sm:p-10 rounded-2xl shadow-2xl border border-gray-100">
       <h2 class="text-4xl sm:text-5xl font-bold mb-6 sm:mb-8 text-gray-800">Vamos conversar?</h2>
-      <p class="mb-8 sm:mb-10 text-gray-700 text-base sm:text-xl leading-relaxed">Entre em contato para solicitar um orçamento ou tirar dúvidas sobre seu projeto. Estou pronto para ajudar sua ideia a ganhar vida!</p>
+      <p class="mb-8 sm:mb-10 text-gray-700 text-base sm:text-xl leading-relaxed">Entre em contato para solicitar um orçamento ou tirar dúvidas sobre seu projeto. Estamos prontos para ajudar sua ideia a ganhar vida!</p>
       <!-- Botão para o WhatsApp -->
       <a href="https://wa.me/5561998354187" class="inline-block px-10 sm:px-12 py-3 sm:py-4 rounded-full font-bold text-lg sm:text-xl shadow-lg bg-green-500 text-white hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105">
-        Fale comigo no WhatsApp
+        Fale conosco no WhatsApp
       </a>
     </div>
   </section>
 
   <!-- Rodapé -->
   <footer class="text-center py-6 sm:py-8 text-xs sm:text-sm text-gray-500 bg-gradient-to-r from-gray-100 to-gray-200">
-    <p>&copy; 2025 zurc. Todos os direitos reservados.</p>
+    <p>&copy; 2025 Zurc. Todos os direitos reservados.</p>
   </footer>
 
   <script>
-    // Script para a funcionalidade do carrossel
-    document.querySelectorAll('.carousel-container').forEach(carousel => {
-      const prevButton = carousel.parentNode.querySelector('.carousel-prev');
-      const nextButton = carousel.parentNode.querySelector('.carousel-next');
-
-      const scrollCarousel = (direction) => {
-        const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
-        carousel.scrollLeft += direction * itemWidth;
-      };
-
-      if (nextButton) {
-        nextButton.addEventListener('click', () => scrollCarousel(1));
-      }
-
-      if (prevButton) {
-        prevButton.addEventListener('click', () => scrollCarousel(-1));
-      }
-    });
-
     // Script para o menu mobile
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const closeMobileMenuButton = document.getElementById('close-mobile-menu-button');
