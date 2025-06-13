@@ -1,258 +1,1120 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio | Zurc</title>
-  <!-- Link para o CDN do Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Configuração do Tailwind CSS, estendendo o tema padrão
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            // Define a fonte 'Inter' como padrão para sans-serif
-            sans: ['Inter', 'sans-serif']
-          },
-          colors: {
-            // Definição de cores personalizadas mais vivas e vibrantes
-            // Nova paleta: Verde-água, Amarelo e Roxo Intenso
-            primary: '#00bcd4', // Teal vibrante (Cyan 500)
-            secondary: '#ffeb3b', // Amarelo vibrante (Yellow 500)
-            accent: '#673ab7', // Roxo intenso (Deep Purple 500)
-          },
-          animation: {
-            // Definição de animações personalizadas
-            'fade-in': 'fadeIn 1s ease-in-out forwards',
-            'slide-in-right': 'slideInRight 1s ease-out forwards',
-          },
-          keyframes: {
-            // Keyframes para as animações
-            fadeIn: {
-              '0%': { opacity: 0 },
-              '100%': { opacity: 1 },
-            },
-            slideInRight: {
-              '0%': { transform: 'translateX(20px)', opacity: 0 },
-              '100%': { transform: 'translateX(0)', opacity: 1 },
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio Profissional</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#3B82F6", secondary: "#10B981" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
             },
           },
-        }
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Poppins', sans-serif;
       }
-    }
-  </script>
-  <!-- Link para a fonte Inter do Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    /* Estilos para o menu mobile */
-    .mobile-menu {
-      transform: translateX(100%);
-      transition: transform 0.3s ease-out;
-    }
-    .mobile-menu.active {
-      transform: translateX(0);
-    }
-  </style>
-</head>
-<!-- Corpo da página com gradiente de fundo e fonte padrão -->
-<body class="bg-gradient-to-br from-emerald-50 to-amber-50 text-gray-900 font-sans min-h-screen">
-  <!-- Navbar (cabeçalho fixo no topo) -->
-  <header class="bg-white bg-opacity-90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Título do portfólio com gradiente de texto -->
-      <h1 class="text-2xl sm:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">ZURC</h1>
-      <!-- Navegação principal (escondida em telas pequenas, visível em md e maiores) -->
-      <nav class="hidden md:flex">
-        <ul class="flex space-x-4 sm:space-x-6 font-semibold text-gray-700">
-          <li><a href="#servicos" class="hover:text-primary transition duration-300 ease-in-out transform hover:scale-105">Serviços</a></li>
-          <li><a href="#portfolio" class="hover:text-primary transition duration-300 ease-in-out transform hover:scale-105">Projetos</a></li>
-          <li><a href="#sobre" class="hover:text-primary transition duration-300 ease-in-out transform hover:scale-105">Sobre</a></li>
-          <li><a href="#contato" class="hover:text-primary transition duration-300 ease-in-out transform hover:scale-105">Contato</a></li>
-        </ul>
-      </nav>
-
-      <!-- Botão do menu mobile (visível apenas em telas pequenas) -->
-      <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary">
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Menu mobile (escondido por padrão, ativado via JS) -->
-    <div id="mobile-menu" class="mobile-menu absolute top-0 right-0 w-64 h-screen bg-white shadow-lg p-6 md:hidden z-40">
-      <div class="flex justify-end mb-4">
-        <button id="close-mobile-menu-button" class="p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary">
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <ul class="flex flex-col space-y-4 font-semibold text-gray-700">
-        <li><a href="#servicos" class="block py-2 hover:text-primary transition" onclick="closeMobileMenu()">Serviços</a></li>
-        <li><a href="#portfolio" class="block py-2 hover:text-primary transition" onclick="closeMobileMenu()">Projetos</a></li>
-        <li><a href="#sobre" class="block py-2 hover:text-primary transition" onclick="closeMobileMenu()">Sobre</a></li>
-        <li><a href="#contato" class="block py-2 hover:text-primary transition" onclick="closeMobileMenu()">Contato</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <!-- Seção Hero (destaque principal da página) -->
-  <section class="text-center py-16 sm:py-24 bg-gradient-to-br from-primary to-secondary text-white shadow-xl">
-    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 animate-fade-in drop-shadow-lg px-4">Transforme ideias em soluções digitais</h2>
-    <p class="text-lg sm:text-xl lg:text-2xl mb-8 animate-fade-in delay-150 max-w-3xl mx-auto px-4">Criação de sites e sistemas sob medida para pequenos negócios</p>
-    <a href="#contato" class="inline-block px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-lg bg-gradient-to-br from-accent to-primary text-white animate-fade-in delay-300 hover:from-primary hover:to-accent transition duration-300 ease-in-out transform hover:scale-105">
-      Solicitar Orçamento
-    </a>
-  </section>
-
-  <!-- Seção de Serviços -->
-  <section id="servicos" class="py-16 sm:py-20 px-4 max-w-7xl mx-auto">
-    <!-- Título da seção com um sublinhado estilizado -->
-    <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Serviços</h2>
-    <div class="grid md:grid-cols-3 gap-8 sm:gap-10">
-      <!-- Cartão de serviço 1 -->
-      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right">
-        <h3 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-primary">Sites Institucionais</h3>
-        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">Desenvolvimento de sites profissionais que comunicam confiança e credibilidade para a sua marca.</p>
-      </div>
-      <!-- Cartão de serviço 2 -->
-      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right delay-150">
-        <h3 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-primary">Lojas Virtuais</h3>
-        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">E-commerces modernos com painel de controle completo, carrinho de compras e integração de pagamentos seguros.</p>
-      </div>
-      <!-- Cartão de serviço 3 -->
-      <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100 animate-slide-in-right delay-300">
-        <h3 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-primary">Sistemas Personalizados</h3>
-        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">Ferramentas exclusivas, como catálogos digitais, CRMs, dashboards interativos e automações sob medida para o seu negócio.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Seção de Portfólio -->
-  <section id="portfolio" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-yellow-50 to-teal-50">
-    <div class="max-w-7xl mx-auto">
-      <!-- Título da seção com um sublinhado estilizado -->
-      <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Projetos Recentes</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
-        <!-- Projeto 1 -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
-          <div class="relative">
-            <!-- Imagem única para o Projeto 1 com efeito interativo -->
-            <img src="https://placehold.co/600x400/FF5733/FFFFFF?text=Catalogo+Online" alt="Catálogo Online Imagem" class="w-full h-48 sm:h-56 object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy">
+      .testimonial-card {
+      transition: transform 0.3s ease;
+      }
+      .testimonial-card:hover {
+      transform: translateY(-5px);
+      }
+      .project-card {
+      transition: transform 0.3s ease;
+      }
+      .project-card:hover {
+      transform: translateY(-5px);
+      }
+      .service-card {
+      transition: transform 0.3s ease;
+      }
+      .service-card:hover {
+      transform: translateY(-5px);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="#" class="text-2xl font-['Pacifico'] text-primary">Zurc</a>
           </div>
-          <div class="p-6">
-            <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Catálogo Online Interativo</h3>
-            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Sistema personalizado para apresentação de produtos com painel administrativo intuitivo e recursos de busca avançada.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Web Development</span>
-                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Backend</span>
-            </div>
+          <div class="hidden md:flex items-center space-x-4">
+            <a
+              href="#sobre"
+              class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary"
+              >Sobre</a
+            >
+            <a
+              href="#servicos"
+              class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary"
+              >Serviços</a
+            >
+            <a
+              href="#projetos"
+              class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary"
+              >Projetos</a
+            >
+            <a
+              href="#estatisticas"
+              class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary"
+              >Estatísticas</a
+            >
+            <a
+              href="#contato"
+              class="ml-4 px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-blue-600 !rounded-button"
+              >Vamos Trabalhar Juntos</a
+            >
           </div>
-        </div>
-
-        <!-- Projeto 2 -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
-          <div class="relative">
-            <!-- Imagem única para o Projeto 2 com efeito interativo -->
-            <img src="https://placehold.co/600x400/33AACC/FFFFFF?text=EAD+Plataforma" alt="Plataforma EAD Imagem" class="w-full h-48 sm:h-56 object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/33AACC/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Plataforma EAD Personalizada</h3>
-            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Plataforma completa para venda de cursos online com área do aluno, controle de progresso e emissão de certificados.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">E-commerce</span>
-                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Education Tech</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Projeto 3 -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
-          <div class="relative">
-            <!-- Imagem única para o Projeto 3 com efeito interativo -->
-            <img src="https://placehold.co/600x400/AAFF33/FFFFFF?text=Gestao+Financeira" alt="Gestão Financeira Imagem" class="w-full h-48 sm:h-56 object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/AAFF33/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Sistema de Gestão Financeira</h3>
-            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Ferramenta para controle de receitas e despesas, com relatórios gerenciais e acompanhamento de fluxo de caixa.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-                <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Financial Tech</span>
-                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">SaaS</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Projeto 4 -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-100">
-          <div class="relative">
-            <!-- Imagem única para o Projeto 4 com efeito interativo -->
-            <img src="https://placehold.co/600x400/FF5733/FFFFFF?text=Website+Corporativo" alt="Website Corporativo Imagem" class="w-full h-48 sm:h-56 object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FF5733/FFFFFF?text=Erro+Carregando+Imagem';" loading="lazy">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">Website Corporativo Otimizado</h3>
-            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Website institucional moderno com foco em SEO, experiência do usuário e design responsivo para diversas plataformas.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-                <span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Marketing Digital</span>
-                <span class="bg-orange-100 text-orange-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">UI/UX Design</span>
-            </div>
+          <div class="flex md:hidden items-center">
+            <button
+              id="mobile-menu-button"
+              class="w-10 h-10 flex items-center justify-center text-gray-500"
+            >
+              <i class="ri-menu-line ri-lg"></i>
+            </button>
           </div>
         </div>
       </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a
+            href="#sobre"
+            class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary"
+            >Sobre</a
+          >
+          <a
+            href="#servicos"
+            class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary"
+            >Serviços</a
+          >
+          <a
+            href="#projetos"
+            class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary"
+            >Projetos</a
+          >
+          <a
+            href="#estatisticas"
+            class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary"
+            >Estatísticas</a
+          >
+          <a
+            href="#contato"
+            class="block px-3 py-2 text-base font-medium text-white bg-primary hover:bg-blue-600 !rounded-button"
+            >Vamos Trabalhar Juntos</a
+          >
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 bg-gradient-to-br from-blue-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 md:pr-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+              Olá, Cicero 
+            </h1>
+            <h2 class="text-2xl font-medium text-primary mb-6">
+              Desenvolvedor Web
+            </h2>
+            <p class="text-gray-600 mb-8">
+              Transformo ideias em experiências digitais incríveis.
+              Especializado em criar sites responsivos, aplicativos e interfaces
+              que conectam marcas aos seus clientes.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+            >
+              <a
+                href="#projetos"
+                class="px-6 py-3 bg-primary text-white font-medium !rounded-button shadow-md hover:bg-blue-600 transition duration-300 text-center cursor-pointer"
+                >Ver Projetos</a
+              >
+              <a
+                href="#contato"
+                class="px-6 py-3 bg-white text-primary font-medium border border-primary !rounded-button hover:bg-blue-50 transition duration-300 text-center cursor-pointer"
+                >Entre em Contato</a
+              >
+            </div>
+          </div>
+          <div class="md:w-1/2 mt-12 md:mt-0">
+            <img
+              src="F:\MY_PROJECTS\ZURC\sobreMim.jpeg"
+              alt="Rafael Silva"
+              class="rounded-full w-64 h-64 mx-auto object-cover shadow-lg border-4 border-white"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section id="sobre" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900">Sobre Mim</h2>
+          <div class="w-20 h-1 bg-primary mx-auto mt-2 mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Conheça um pouco mais sobre minha trajetória e habilidades
+          </p>
+        </div>
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-2/5 mb-8 md:mb-0">
+            <img
+              src="F:\MY_PROJECTS\ZURC\QuemSouEu.jpeg"
+              alt="Sobre Rafael"
+              class="rounded-lg shadow-lg w-full h-auto object-cover"
+            />
+          </div>
+          <div class="md:w-3/5 md:pl-12">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Quem sou eu
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Com mais de 5 anos de experiência no desenvolvimento web, sou
+              apaixonado por criar soluções digitais que combinam funcionalidade
+              e estética. Formado em Analise e desenvolvimento de sistemas pela Anhanguera
+              Distrito Federal, tenho trabalhado com clientes de
+              diversos setores, desde startups até empresas estabelecidas.
+            </p>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Minhas habilidades
+            </h3>
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mr-3"
+                >
+                  <i class="ri-code-s-slash-line ri-lg text-primary"></i>
+                </div>
+                <span class="text-gray-700">Desenvolvimento Frontend</span>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mr-3"
+                >
+                  <i class="ri-layout-2-line ri-lg text-primary"></i>
+                </div>
+                <span class="text-gray-700">Desenvolvimento BackEnd</span>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mr-3"
+                >
+                  <i class="ri-database-2-line ri-lg text-primary"></i>
+                </div>
+                <span class="text-gray-600">Desenvolvimento Mobile</span>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mr-3"
+                >
+                  <i class="ri-smartphone-line ri-lg text-primary"></i>
+                </div>
+                <span class="text-gray-700">Design Responsivo</span>
+              </div>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Tecnologias
+            </h3>
+            <div class="flex flex-wrap gap-3 mb-6">
+              <span
+                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                >HTML5</span
+              >
+              <span
+                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                >CSS3</span
+              >
+              <span
+                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                >JavaScript</span
+              >
+              <span
+                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                >Angular</span
+              >
+              <span
+                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                >Java</span
+              >
+              <span
+                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                >Python</span
+              >
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Services Section -->
+    <section id="servicos" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900">Meus Serviços</h2>
+          <div class="w-20 h-1 bg-primary mx-auto mt-2 mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Soluções personalizadas para atender às necessidades do seu negócio
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div
+            class="service-card bg-white rounded-lg shadow-md overflow-hidden"
+          >
+            <div class="h-48 bg-blue-100 flex items-center justify-center">
+              <img
+                src="https://readdy.ai/api/search-image?query=web%20development%20illustration%2C%20responsive%20design%20concept%2C%20minimalist%20style%2C%20blue%20color%20scheme%2C%20clean%20design%2C%20digital%20devices%20showing%20website%2C%20professional%20look&width=375&height=250&seq=3&orientation=landscape"
+                alt="Desenvolvimento Web"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary rounded-full mb-4"
+              >
+                <i class="ri-code-s-slash-line ri-lg text-white"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Desenvolvimento Web
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Criação de sites responsivos, landing pages e aplicações web com
+                foco em performance e experiência do usuário.
+              </p>
+              <ul class="text-gray-600 mb-6 space-y-2">
+                <li class="flex items-center">
+                  <i class="ri-check-line ri-sm text-primary mr-2"></i>
+                  <span>Sites institucionais</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="ri-check-line ri-sm text-primary mr-2"></i>
+                  <span>E-commerce</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="ri-check-line ri-sm text-primary mr-2"></i>
+                  <span>Landing pages</span>
+                </li>
+              </ul>
+              <a
+                href="#contato"
+                class="inline-block px-4 py-2 bg-white text-primary border border-primary !rounded-button hover:bg-blue-50 transition duration-300 cursor-pointer"
+                >Saiba Mais</a
+              >
+            </div>
+          </div>
+          <!-- Service 2 -->
+          <div
+            class="service-card bg-white rounded-lg shadow-md overflow-hidden"
+          >
+            <div class="h-48 bg-green-100 flex items-center justify-center">
+              <img
+                src="https://readdy.ai/api/search-image?query=UI%20UX%20design%20illustration%2C%20wireframes%20and%20prototypes%2C%20user%20interface%20elements%2C%20design%20tools%2C%20creative%20process%2C%20professional%20design%20workspace%2C%20blue%20and%20green%20color%20scheme&width=375&height=250&seq=4&orientation=landscape"
+                alt="Mobile"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-secondary rounded-full mb-4"
+              >
+                <i class="ri-layout-2-line ri-lg text-white"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Mobile
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Criação de interfaces intuitivas e atraentes que proporcionam a
+                melhor experiência para seus usuários.
+              </p>
+              <ul class="text-gray-600 mb-6 space-y-2">
+                <li class="flex items-center">
+                  <i class="ri-check-line ri-sm text-secondary mr-2"></i>
+                  <span>Wireframes e protótipos</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="ri-check-line ri-sm text-secondary mr-2"></i>
+                  <span>Design de interfaces</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="ri-check-line ri-sm text-secondary mr-2"></i>
+                  <span>Testes de usabilidade</span>
+                </li>
+              </ul>
+              <a
+                href="#contato"
+                class="inline-block px-4 py-2 bg-white text-secondary border border-secondary !rounded-button hover:bg-green-50 transition duration-300 cursor-pointer"
+                >Saiba Mais</a
+              >
+            </div>
+          </div>
+          <!-- Service 3 -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Projects Section -->
+    <section id="projetos" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900">Projetos Recentes</h2>
+          <div class="w-20 h-1 bg-primary mx-auto mt-2 mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Confira alguns dos trabalhos que desenvolvi para clientes
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div
+            class="project-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+            data-project="1"
+          >
+            <div class="h-56 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=ecommerce%20website%20design%2C%20fashion%20store%2C%20modern%20and%20clean%20interface%2C%20product%20showcase%2C%20Brazilian%20fashion%20brand%2C%20professional%20website%20mockup%20on%20laptop%20screen&width=375&height=250&seq=6&orientation=landscape"
+                alt="E-commerce Moda Brasil"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                E-commerce Moda Brasil
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Desenvolvimento de loja virtual completa para marca de moda
+                brasileira.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
+                  >HTML</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
+                  >CSS</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
+                  >JS</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Project 2 -->
+          <div
+            class="project-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+            data-project="2"
+          >
+            <div class="h-56 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=restaurant%20website%20design%2C%20Brazilian%20cuisine%2C%20food%20menu%20presentation%2C%20elegant%20and%20appetizing%20design%2C%20reservation%20system%2C%20responsive%20website%20mockup%20on%20devices&width=375&height=250&seq=7&orientation=landscape"
+                alt="Site Restaurante Sabor Carioca"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Restaurante Sabor Carioca
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Site responsivo com sistema de reservas online para restaurante
+                tradicional.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                  >Html</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                  >Css</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                  >JS</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div
+            class="project-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+            data-project="3"
+          >
+            <div class="h-56 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=fitness%20app%20interface%20design%2C%20workout%20tracking%2C%20mobile%20application%20UI%2C%20health%20monitoring%2C%20Brazilian%20fitness%20brand%2C%20user-friendly%20interface%2C%20app%20screens%20mockup&width=375&height=250&seq=8&orientation=landscape"
+                alt="Aplicativo FitBrasil"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Aplicativo FitBrasil
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Design e desenvolvimento de aplicativo de fitness com planos de
+                treino personalizados.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs"
+                  >HTML</span
+                >
+                <span
+                  class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs"
+                  >Firebase</span
+                >
+                <span
+                  class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs"
+                  >Kotlin</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Project 4 -->
+          <div
+            class="project-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+            data-project="4"
+          >
+            <div class="h-56 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=real%20estate%20website%20design%2C%20property%20listings%2C%20Brazilian%20properties%2C%20modern%20interface%2C%20search%20functionality%2C%20interactive%20map%2C%20professional%20real%20estate%20platform&width=375&height=250&seq=9&orientation=landscape"
+                alt="Portal Imobiliário ImóveisSP"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Portal ImóveisSP
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Plataforma completa para busca e anúncio de imóveis em São
+                Paulo.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
+                  >Python</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
+                  >MySQL</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
+                  >JavaScript</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Project 5 -->
+          <div
+            class="project-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+            data-project="5"
+          >
+            <div class="h-56 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=educational%20platform%20interface%2C%20online%20courses%2C%20learning%20management%20system%2C%20Brazilian%20education%20tech%2C%20student%20dashboard%2C%20course%20catalog%2C%20professional%20e-learning%20design&width=375&height=250&seq=10&orientation=landscape"
+                alt="Plataforma EduBrasil"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Plataforma EduBrasil
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Sistema de ensino online com área de membros e gestão de cursos.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                  >Angular</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                  >Java</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                  >PostgreSQL</span
+                >
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-12">
+          <a
+            href="#contato"
+            class="inline-block px-6 py-3 bg-primary text-white font-medium !rounded-button shadow-md hover:bg-blue-600 transition duration-300 cursor-pointer"
+            >Solicite um Orçamento</a
+          >
+        </div>
+      </div>
+    </section>
+    <!-- Statistics Section -->
+    <section id="estatisticas" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900">
+            Números que Comprovam Experiência
+          </h2>
+          <div class="w-20 h-1 bg-primary mx-auto mt-2 mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Resultados alcançados ao longo da minha trajetória profissional
+          </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            <div
+              class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="ri-code-s-slash-line ri-xl text-primary"></i>
+            </div>
+            <div class="text-4xl font-bold text-primary mb-2">30+</div>
+            <p class="text-gray-600">Projetos Concluídos</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            <div
+              class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="ri-user-smile-line ri-xl text-primary"></i>
+            </div>
+            <div class="text-4xl font-bold text-primary mb-2">20+</div>
+            <p class="text-gray-600">Clientes Satisfeitos</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            <div
+              class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="ri-time-line ri-xl text-primary"></i>
+            </div>
+            <div class="text-4xl font-bold text-primary mb-2">5+</div>
+            <p class="text-gray-600">Anos de Experiência</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md text-center">
+            <div
+              class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="ri-award-line ri-xl text-primary"></i>
+            </div>
+            <div class="text-4xl font-bold text-primary mb-2">98%</div>
+            <p class="text-gray-600">Taxa de Satisfação</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contato" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900">Entre em Contato</h2>
+          <div class="w-20 h-1 bg-primary mx-auto mt-2 mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Vamos conversar sobre seu projeto e como posso ajudar a torná-lo
+            realidade
+          </p>
+        </div>
+        <div class="flex flex-col lg:flex-row">
+          <div class="lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">
+              Informações de Contato
+            </h3>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mr-4"
+                >
+                  <i class="ri-map-pin-line ri-lg text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    Localização
+                  </h4>
+                  <p class="text-gray-600">Aguas Lindas - GO</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mr-4"
+                >
+                  <i class="ri-mail-line ri-lg text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">Email</h4>
+                  <p class="text-gray-600">ciceroregis25@gmail.com</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mr-4"
+                >
+                  <i class="ri-whatsapp-line ri-lg text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    WhatsApp
+                  </h4>
+                  <p class="text-gray-600">+55 (61) 99835-4187</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mr-4"
+                >
+                  <i class="ri-time-line ri-lg text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    Disponibilidade
+                  </h4>
+                  <p class="text-gray-600">Segunda a Sexta, 9h às 18h</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8">
+              <h4 class="text-lg font-medium text-gray-900 mb-4">
+                Redes Sociais
+              </h4>
+              <div class="flex space-x-4">
+                <a
+                  href="https://www.linkedin.com/in/ciceroregis/"
+                  class="w-10 h-10 flex items-center justify-center bg-gray-100 text-gray-600 rounded-full hover:bg-primary hover:text-white transition duration-300 cursor-pointer"
+                >
+                  <i class="ri-linkedin-fill ri-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center bg-gray-100 text-gray-600 rounded-full hover:bg-primary hover:text-white transition duration-300 cursor-pointer"
+                >
+                  <i class="ri-instagram-fill ri-lg"></i>
+                </a>
+                
+              </div>
+            </div>
+          </div>
+          <div class="lg:w-1/2">
+            <div class="bg-gray-50 rounded-lg p-8 shadow-sm">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-6">
+                Envie uma Mensagem
+              </h3>
+              <form id="contact-form" class="space-y-6">
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Nome Completo</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="subject"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Assunto</label
+                  >
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="message"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Mensagem</label
+                  >
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-primary focus:border-primary"
+                    required
+                  ></textarea>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="w-full px-6 py-3 bg-primary text-white font-medium !rounded-button shadow-md hover:bg-blue-600 transition duration-300 cursor-pointer"
+                  >
+                    Enviar Mensagem
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between">
+          <div class="mb-8 md:mb-0">
+            <a
+              href="#"
+              class="text-3xl font-['Pacifico'] text-white mb-4 inline-block"
+              >Zurc</a
+            >
+            <p class="text-gray-400 max-w-xs mt-2">
+              Transformando ideias em experiências digitais incríveis desde
+              2019.
+            </p>
+            <div class="flex space-x-4 mt-6">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+              >
+                <i class="ri-linkedin-fill ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+              >
+                <i class="ri-github-fill ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+              >
+                <i class="ri-instagram-fill ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+              >
+                <i class="ri-behance-fill ri-lg"></i>
+              </a>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Links Rápidos</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#sobre"
+                    class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                    >Sobre</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#servicos"
+                    class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                    >Serviços</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#projetos"
+                    class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                    >Projetos</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#estatisticas"
+                    class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                    >Estatísticas</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#contato"
+                    class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                    >Contato</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Serviços</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                    >Desenvolvimento Web</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                    >Mobile</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+                    >E-commerce</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Contato</h3>
+              <ul class="space-y-2">
+                <li class="flex items-center text-gray-400">
+                  <i class="ri-map-pin-line ri-sm mr-2"></i>
+                  <span>Aguas Lindas, Go</span>
+                </li>
+                <li class="flex items-center text-gray-400">
+                  <i class="ri-mail-line ri-sm mr-2"></i>
+                  <span>ciceroregis25@gmail.com</span>
+                </li>
+                <li class="flex items-center text-gray-400">
+                  <i class="ri-whatsapp-line ri-sm mr-2"></i>
+                  <span>+55 (61) 99835-4187</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-6">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 text-sm">
+              © 2025 Zurc. Todos os direitos reservados.
+            </p>
+            <div class="mt-4 md:mt-0">
+              <a
+                href="#"
+                id="back-to-top"
+                class="flex items-center text-gray-400 hover:text-white transition duration-300 cursor-pointer"
+              >
+                <span class="mr-2">Voltar ao topo</span>
+                <i class="ri-arrow-up-line ri-sm"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Project Modal -->
+    <div
+      id="project-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden"
+    >
+      <div
+        class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h3 id="modal-title" class="text-2xl font-bold text-gray-900"></h3>
+            <button
+              id="close-modal"
+              class="text-gray-500 hover:text-gray-700 cursor-pointer"
+            >
+              <i class="ri-close-line ri-2x"></i>
+            </button>
+          </div>
+          <div id="modal-content"></div>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <!-- Seção Sobre Nós -->
-  <section id="sobre" class="py-16 sm:py-20 px-4 max-w-4xl mx-auto text-center">
-    <!-- Título da seção com um sublinhado estilizado -->
-    <h2 class="text-4xl sm:text-5xl font-bold mb-8 sm:mb-10 text-gray-800 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-1/2 after:transform after:-translate-x-1/2 after:w-16 sm:after:w-20 after:h-1.5 after:bg-primary after:rounded-full">Sobre Nós</h2>
-    <p class="text-base sm:text-lg text-gray-800 leading-loose">
-      Olá! Somos a Zurc, apaixonados por transformar ideias em soluções digitais eficientes e visualmente atraentes. Nosso foco é capacitar micro e pequenas empresas, oferecendo a elas uma presença digital profissional e impactante. Prezamos por um atendimento direto, agilidade na entrega e a personalização de cada projeto para que ele realmente se encaixe nas suas necessidades e objetivos.
-    </p>
-  </section>
-
-  <!-- Seção de Contato -->
-  <section id="contato" class="py-16 sm:py-20 px-4 bg-gradient-to-br from-white to-gray-50">
-    <div class="max-w-3xl mx-auto text-center p-8 sm:p-10 rounded-2xl shadow-2xl border border-gray-100">
-      <h2 class="text-4xl sm:text-5xl font-bold mb-6 sm:mb-8 text-gray-800">Vamos conversar?</h2>
-      <p class="mb-8 sm:mb-10 text-gray-700 text-base sm:text-xl leading-relaxed">Entre em contato para solicitar um orçamento ou tirar dúvidas sobre seu projeto. Estamos prontos para ajudar sua ideia a ganhar vida!</p>
-      <!-- Botão para o WhatsApp -->
-      <a href="https://wa.me/5561998354187" class="inline-block px-10 sm:px-12 py-3 sm:py-4 rounded-full font-bold text-lg sm:text-xl shadow-lg bg-green-500 text-white hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105">
-        Fale conosco no WhatsApp
-      </a>
+    <!-- Success Message Modal -->
+    <div
+      id="success-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden"
+    >
+      <div class="bg-white rounded-lg p-8 max-w-md w-full">
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <i class="ri-check-line ri-2x text-green-500"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            Mensagem Enviada!
+          </h3>
+          <p class="text-gray-600 mb-6">
+            Obrigado pelo seu contato. Responderei o mais breve possível.
+          </p>
+          <button
+            id="close-success"
+            class="px-4 py-2 bg-primary text-white font-medium !rounded-button hover:bg-blue-600 transition duration-300 cursor-pointer"
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <!-- Rodapé -->
-  <footer class="text-center py-6 sm:py-8 text-xs sm:text-sm text-gray-500 bg-gradient-to-r from-gray-100 to-gray-200">
-    <p>&copy; 2025 Zurc. Todos os direitos reservados.</p>
-  </footer>
-
-  <script>
-    // Script para o menu mobile
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const closeMobileMenuButton = document.getElementById('close-mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    // Abre o menu mobile
-    if (mobileMenuButton) {
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
+    <!-- Mobile Menu Script -->
+    <script id="mobile-menu-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+          });
+        });
       });
-    }
-
-    // Fecha o menu mobile
-    if (closeMobileMenuButton) {
-      closeMobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
+    </script>
+    <!-- Smooth Scroll Script -->
+    <script id="smooth-scroll-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+        // Back to top button
+        const backToTopButton = document.getElementById("back-to-top");
+        backToTopButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
       });
-    }
+    </script>
+    <!-- Statistics Animation Script -->
+    <script id="statistics-animation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate-count");
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
 
-    // Fecha o menu mobile ao clicar em um link
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('active');
-    }
-  </script>
-</body>
+        document.querySelectorAll(".text-4xl").forEach((el) => observer.observe(el));
+      });
+    </script>
+    <!-- Contact Form Script -->
+    <script id="contact-form-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const contactForm = document.getElementById("contact-form");
+        const successModal = document.getElementById("success-modal");
+        const closeSuccess = document.getElementById("close-success");
+
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          
+          const formData = new FormData(contactForm);
+          const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            subject: formData.get("subject"),
+            message: formData.get("message")
+          };
+
+          fetch("/send-email", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              if (result.success) {
+                successModal.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+                contactForm.reset();
+              } else {
+                alert("Erro ao enviar a mensagem: " + result.message);
+              }
+            })
+            .catch((error) => {
+              alert("Erro ao enviar a mensagem: " + error.message);
+            });
+        });
+
+        closeSuccess.addEventListener("click", function () {
+          successModal.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        });
+
+        successModal.addEventListener("click", function (e) {
+          if (e.target === successModal) {
+            successModal.classList.add("hidden");
+            document.body.style.overflow = "auto";
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
